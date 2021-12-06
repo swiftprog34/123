@@ -57,7 +57,7 @@
 		35A768B02747AFDE007A1689 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		35A768B32747CCBD007A1689 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		35A768B52747DB9B007A1689 /* RouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTest.swift; sourceTree = "<group>"; };
-		35A768BB2747DEE1007A1689 /* MVP-Level oneUITests */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MVP-Level oneUITests"; path = "../../../../.Trash/MVP-Level oneUITests"; sourceTree = "<group>"; };
+		35A768BB2747DEE1007A1689 /* newsAppUITests */ = {isa = PBXFileReference; lastKnownFileType = text; name = newsAppUITests; path = ../../../../.Trash/newsAppUITests; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +81,8 @@
 		3576EEBB2746F58300BE9BAC = {
 			isa = PBXGroup;
 			children = (
-				3576EEC62746F58300BE9BAC /* MVP-Level one */,
-				3576EEDD2746F58600BE9BAC /* MVP-Level oneTests */,
+				3576EEC62746F58300BE9BAC /* newsApp */,
+				3576EEDD2746F58600BE9BAC /* newsAppTests */,
 				3576EEC52746F58300BE9BAC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3576EEC62746F58300BE9BAC /* MVP-Level one */ = {
+		3576EEC62746F58300BE9BAC /* newsApp */ = {
 			isa = PBXGroup;
 			children = (
 				35A768A92747A758007A1689 /* ServiceLayer */,
@@ -109,16 +109,16 @@
 				3576EED22746F58600BE9BAC /* LaunchScreen.storyboard */,
 				3576EED52746F58600BE9BAC /* Info.plist */,
 			);
-			path = "MVP-Level one";
+			path = newsApp;
 			sourceTree = "<group>";
 		};
-		3576EEDD2746F58600BE9BAC /* MVP-Level oneTests */ = {
+		3576EEDD2746F58600BE9BAC /* newsAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				35A768BB2747DEE1007A1689 /* MVP-Level oneUITests */,
+				35A768BB2747DEE1007A1689 /* newsAppUITests */,
 				35A768A0274799B7007A1689 /* TestMainModule */,
 			);
-			path = "MVP-Level oneTests";
+			path = newsAppTests;
 			sourceTree = "<group>";
 		};
 		35A768962747948F007A1689 /* MainModule */ = {
@@ -480,7 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MVP-Level one/Info.plist";
+				INFOPLIST_FILE = newsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -507,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MVP-Level one/Info.plist";
+				INFOPLIST_FILE = newsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

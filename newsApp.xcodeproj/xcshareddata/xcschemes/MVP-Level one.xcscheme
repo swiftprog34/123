@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3576EEC32746F58300BE9BAC"
-               BuildableName = "MVP-Level one.app"
+               BuildableName = "newsApp.app"
                BlueprintName = "newsApp"
                ReferencedContainer = "container:newsApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3576EEC32746F58300BE9BAC"
-            BuildableName = "MVP-Level one.app"
+            BuildableName = "newsApp.app"
             BlueprintName = "newsApp"
             ReferencedContainer = "container:newsApp.xcodeproj">
          </BuildableReference>
@@ -44,7 +44,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3576EED92746F58600BE9BAC"
-               BuildableName = "MVP-Level oneTests.xctest"
+               BuildableName = "newsAppTests.xctest"
                BlueprintName = "newsAppTests"
                ReferencedContainer = "container:newsApp.xcodeproj">
             </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3576EEC32746F58300BE9BAC"
-            BuildableName = "MVP-Level one.app"
+            BuildableName = "newsApp.app"
             BlueprintName = "newsApp"
             ReferencedContainer = "container:newsApp.xcodeproj">
          </BuildableReference>
@@ -93,7 +93,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3576EEC32746F58300BE9BAC"
-            BuildableName = "MVP-Level one.app"
+            BuildableName = "newsApp.app"
             BlueprintName = "newsApp"
             ReferencedContainer = "container:newsApp.xcodeproj">
          </BuildableReference>
