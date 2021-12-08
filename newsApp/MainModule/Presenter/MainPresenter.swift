@@ -6,18 +6,20 @@
 //
 
 import Foundation
+import CoreData
 
 protocol MainViewProtocol: AnyObject {
     func success()
-    func failure(error: Error)
 }
 
 protocol MainViewPresenterProtocol {
-    init (view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init (view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, context: NSManagedObjectContext)
     func getComments()
     var comments: [Comment]? {get set}
     
     func tapOnTheComment(comment: Comment?)
+    func saveContext()
+    func deleteContext()
 }
 
 class MainPresentor: MainViewPresenterProtocol {
@@ -25,11 +27,13 @@ class MainPresentor: MainViewPresenterProtocol {
     var router: RouterProtocol?
     weak var view: MainViewProtocol?
     let networkService: NetworkServiceProtocol!
-
-    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
+    let context: NSManagedObjectContext!
+    
+    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, context: NSManagedObjectContext) {
         self.view = view
         self.networkService = networkService
         self.router = router
+        self.context = context
         getComments()
     }
     
@@ -41,8 +45,41 @@ class MainPresentor: MainViewPresenterProtocol {
                 case .success(let comments) :
                     self.comments = comments!
                     self.view?.success()
-                case .failure(let error) :
-                    self.view?.failure(error: error)
+                    self.deleteContext()
+                    for i in 0...comments!.count - 1 {
+                        let savedComment = SavedComments(context: self.context)
+                        savedComment.id = Int64(comments![i].id)
+                        savedComment.postId = Int64(comments![i].postId)
+                        savedComment.email = comments?[i].email
+                        savedComment.name = comments?[i].name
+                        savedComment.body = comments?[i].body
+                        self.saveContext()
+                    }
+                    
+                case .failure(_) :
+                    let fetchRequest: NSFetchRequest<SavedComments> = SavedComments.fetchRequest()
+                    do {
+                        let savedComments = try self.context.fetch(fetchRequest)
+                        var obj: [Comment] = []
+                        for i in 0...savedComments.count - 1 {
+                            guard let name = savedComments[i].name,
+                                  let email = savedComments[i].email,
+                                  let body = savedComments[i].body else {
+                                      return
+                                  }
+                            obj.append(Comment(
+                                postId: Int(savedComments[i].postId),
+                                id: Int(savedComments[i].id),
+                                name: name,
+                                email: email,
+                                body: body
+                            ))
+                        }
+                        self.comments = obj
+                        self.view?.success()
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
                 }
             }
         }
@@ -50,6 +87,33 @@ class MainPresentor: MainViewPresenterProtocol {
     
     func tapOnTheComment(comment: Comment?) {
         router?.showDetail(comment: comment)
+    }
+    
+    func saveContext() {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                context.rollback()
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    func deleteContext() {
+        let fetchRequest: NSFetchRequest<SavedComments> = SavedComments.fetchRequest()
+        do {
+            let savedComments = try self.context.fetch(fetchRequest)
+            if(savedComments.count > 0) {
+                for i in 0...savedComments.count - 1 {
+                    context.delete(savedComments[i])
+                }
+                self.saveContext()
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 

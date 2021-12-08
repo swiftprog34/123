@@ -14,9 +14,11 @@ protocol AssemblyBuilderProtocol {
 
 class AssemblyBuilder: AssemblyBuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistenContainer.viewContext
         let view = MainViewController()
         let networkService = NetworkService()
-        let presenter = MainPresentor(view: view, networkService: networkService, router: router)
+        let presenter = MainPresentor(view: view, networkService: networkService, router: router, context: context)
         view.presenter = presenter
         return view
     }

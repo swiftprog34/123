@@ -44,8 +44,4 @@ extension MainViewController: MainViewProtocol {
     func success() {
         tableView.reloadData()
     }
-    
-    func failure(error: Error) {
-        print(error.localizedDescription)
-    }
 }
